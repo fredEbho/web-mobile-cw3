@@ -29,7 +29,7 @@ export default {
     LessonsComponent
   },
   data() {
-    let base_url = 'http://localhost:4000';
+    let base_url = 'https://web-mobile-cw2.onrender.com';
     return {
       currentView: LessonsComponent,
       isLoading: false,

@@ -47,7 +47,7 @@ export default {
     this.fetchLessons()
   },
   methods: {
-    fetchLessons(){
+    fetchLessons(search = ''){
       this.isLoading = true;
       let endpoint = search.length > 0 ? 'search?q='+search : 'lessons'
       fetch(`${this.base_url}/${endpoint}`, {

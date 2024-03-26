@@ -6,21 +6,18 @@ const { Plugin: ExpirationPlugin } = workbox.expiration;
 
 const { Plugin: CacheableResponsePlugin } = workbox.cacheableResponse;
 
-
-precacheAndRoute(self.__WB_MANIFEST);
-
 self.addEventListener("message", (event) => {
     if (event.data && event.data.type === "SKIP_WAITING") {
         self.skipWaiting();
     }
 });
 
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-precacheAndRoute(self.__precacheManifest, {});
+// /**
+//  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+//  * requests for URLs in the manifest.
+//  */
+// self.__precacheManifest = [].concat(self.__precacheManifest || []);
+// precacheAndRoute(self.__precacheManifest, {});
 
 // cache image and render from the cache if it exists or go t the network
 registerRoute(
@@ -39,3 +36,7 @@ registerRoute(
     })
 );
 
+registerRoute(
+    ({ url }) => url.pathname.startsWith("https://web-mobile-cw2.onrender.com/"),
+    new StaleWhileRevalidate()
+);

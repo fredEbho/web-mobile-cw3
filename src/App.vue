@@ -47,7 +47,7 @@ export default {
     this.fetchLessons()
   },
   methods: {
-    fetchLessons(search = ''){
+    fetchLessons(){
       this.isLoading = true;
       let endpoint = search.length > 0 ? 'search?q='+search : 'lessons'
       fetch(`${this.base_url}/${endpoint}`, {
@@ -132,8 +132,9 @@ export default {
         this.step = 1;
       }
     },
-    getLessons() {
+    getLessons(search = '') {
       let transformedLessons = [...this.lessons];
+
       if (this.sort_by === 'topic')
         transformedLessons.sort((a, b) => (a.topic > b.topic) ? this.sort_order === 'asc' ? 1 : -1 : this.sort_order === 'asc' ? -1 : 1);
       if (this.sort_by === 'location')
@@ -142,6 +143,11 @@ export default {
         transformedLessons.sort((a, b) => (a.price > b.price) ? this.sort_order === 'asc' ? 1 : -1 : this.sort_order === 'asc' ? -1 : 1);
       if (this.sort_by === 'spaces')
         transformedLessons.sort((a, b) => (a.spaces > b.spaces) ? this.sort_order === 'asc' ? 1 : -1 : this.sort_order === 'asc' ? -1 : 1);
+
+      if (search.length > 1) {
+        let e = search.toLowerCase();
+        return transformedLessons.filter((lesson) => (lesson.topic.toLowerCase().indexOf(e) > -1 || lesson.location.toLowerCase().indexOf(e) > -1))
+      }
 
       return transformedLessons;
     },

@@ -12,7 +12,7 @@ module.exports = defineConfig({
         handler: 'StaleWhileRevalidate'
       },
         {
-          urlPattern: ({ url }) => url.pathname.startsWith("https://web-mobile-cw2.onrender.com/"),
+          urlPattern: ({ request, url }) => url.origin === 'https://web-mobile-cw2.onrender.com',
           handler: 'StaleWhileRevalidate'
         }
       ],

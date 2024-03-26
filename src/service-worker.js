@@ -6,7 +6,7 @@ const { Plugin: ExpirationPlugin } = workbox.expiration;
 
 const { Plugin: CacheableResponsePlugin } = workbox.cacheableResponse;
 
-workbox.core.setCacheNameDetails({ prefix: "appname" });
+
 precacheAndRoute(self.__WB_MANIFEST);
 
 self.addEventListener("message", (event) => {
@@ -39,7 +39,3 @@ registerRoute(
     })
 );
 
-registerRoute(
-    ({ url }) => url.pathname.startsWith("https://web-mobile-cw2.onrender.com/"),
-    new StaleWhileRevalidate()
-);

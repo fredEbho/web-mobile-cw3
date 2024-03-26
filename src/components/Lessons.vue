@@ -29,7 +29,7 @@
           <div style="margin-top: 20px;" class="mb-4">
             <label for="search">Search:</label>
             <input v-model="search"
-                   @input="getLessons(search)" id="search" type="search" name="search" class=" input ml-2" />
+                   @input="searchLessons(search)" id="search" type="search" name="search" class=" input ml-2" />
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center border-bottom mt-5 py-2">

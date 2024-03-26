@@ -4,9 +4,17 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   pwa: {
-    workboxPluginMode: "InjectManifest",
+    workboxPluginMode: "GenerateSW",
     workboxOptions: {
-      swSrc: "./src/service-worker.js",
-      exclude: ['_redirects']
+      runtimeCaching: [{
+        // Routing via a matchCallback function:
+        urlPattern: ({request, url}) =>  request.destination === "image",
+        handler: 'StaleWhileRevalidate'
+      },
+        {
+          urlPattern: ({ url }) => url.pathname.startsWith("https://web-mobile-cw2.onrender.com/"),
+          handler: 'StaleWhileRevalidate'
+        }
+      ],
     }}
 })

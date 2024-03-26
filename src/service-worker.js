@@ -16,19 +16,12 @@ cleanupOutdatedCaches()
 
 precacheAndRoute(self.__WB_MANIFEST)
 
-
 self.addEventListener("message", (event) => {
     if (event.data && event.data.type === "SKIP_WAITING") {
         self.skipWaiting();
     }
 });
 
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-precacheAndRoute(self.__precacheManifest, {});
 
 // cache image and render from the cache if it exists or go t the network
 registerRoute(

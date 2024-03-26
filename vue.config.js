@@ -12,8 +12,17 @@ module.exports = defineConfig({
         handler: 'StaleWhileRevalidate'
       },
         {
-          urlPattern: ({ request, url }) => url.origin === 'https://web-mobile-cw2.onrender.com',
-          handler: 'StaleWhileRevalidate'
+          urlPattern: ({ request, url }) => url.origin === 'https://web-mobile-cw2.onrender.com' ,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'api-cache',
+            plugins: [
+              {
+                handler: 'CacheableResponsePlugin',
+                statuses: [0,200]
+              }
+            ]
+          }
         }
       ],
     }}

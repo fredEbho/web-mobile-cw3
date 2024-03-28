@@ -6,7 +6,7 @@
   <main>
     <p></p>
     <div v-if="step === 1" class="step-one">
-      <LessonsComponent v-on:add-to-cart="addToCart" :can-add-to-cart="canAddToCart" :cart-item-count="cartItemCount" :show-checkout="showCheckout" :get-image-url="getImageUrl" :is-loading="isLoading" :get-lessons="getLessons" :search-lessons="fetchLessons" v-model:sort-by="sort_by" v-model:sort-order="sort_order"  />
+      <LessonsComponent v-on:add-to-cart="addToCart" :can-add-to-cart="canAddToCart" :cart-item-count="cartItemCount" :show-checkout="showCheckout" :get-image-url="getImageUrl" :is-loading="isLoading" :get-lessons="getLessons" v-model:search="search" v-model:sort-by="sort_by" v-model:sort-order="sort_order"  />
     </div>
 
     <div v-if="step === 2">
@@ -38,6 +38,7 @@ export default {
       sort_by: 'topic',
       sort_order: 'asc',
       sitename: 'Books Store',
+      search: '',
       cart: [],
       base_url,
       image_base_url: `${base_url}/public`
@@ -132,7 +133,7 @@ export default {
         this.step = 1;
       }
     },
-    getLessons(search = '') {
+    getLessons() {
       let transformedLessons = [...this.lessons];
 
       if (this.sort_by === 'topic')
@@ -144,8 +145,8 @@ export default {
       if (this.sort_by === 'spaces')
         transformedLessons.sort((a, b) => (a.spaces > b.spaces) ? this.sort_order === 'asc' ? 1 : -1 : this.sort_order === 'asc' ? -1 : 1);
 
-      if (search.length > 1) {
-        let e = search.toLowerCase();
+      if (this.search.length > 1) {
+        let e = this.search.toLowerCase();
         return transformedLessons.filter((lesson) => (lesson.topic.toLowerCase().indexOf(e) > -1 || lesson.location.toLowerCase().indexOf(e) > -1))
       }
 

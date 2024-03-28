@@ -28,8 +28,8 @@
 
           <div style="margin-top: 20px;" class="mb-4">
             <label for="search">Search:</label>
-            <input v-model="search"
-                   @input="searchLessons(search)" id="search" type="search" name="search" class=" input ml-2" />
+            <input
+                   @input="$emit('update:search', $event.target.value)" id="search" type="search" name="search" class=" input ml-2" />
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center border-bottom mt-5 py-2">
@@ -100,7 +100,7 @@ export default {
   name: 'lessons-component',
   data(){
     return {
-      search: ''
+
     }
   },
   props: {
@@ -108,7 +108,7 @@ export default {
     sortOrder: {type: String, required: true},
     cartItemCount: {type: Number, required: true},
     getLessons: {type: Function, required: true},
-    searchLessons: {type: Function, required: true},
+    search: {type: String, required: true},
     getImageUrl: {type: Function, required: true},
     showCheckout: {type: Function, required: true},
     canAddToCart: {type: Function, required: true},

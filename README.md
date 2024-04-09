@@ -1,24 +1,9 @@
-# web-mobile-cw3
+-Vuejs App Github Repo link - https://github.com/fredEbho/web-mobile-cw3
 
-## Project setup
-```
-npm install
-```
+-Vuejs App Github Pages Link - https://web-mobile-cw3.vercel.app/
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+-Express App Github Link - https://github.com/fredEbho/web-mobile-cw2
 
-### Compiles and minifies for production
-```
-npm run build
-```
+-Express App Https Link - https://web-mobile-cw2.onrender.com
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
